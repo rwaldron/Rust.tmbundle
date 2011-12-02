@@ -16,15 +16,49 @@
 	<array>
 		<dict>
 			<key>match</key>
-			<string>\b(if|for|for each|while)\b</string>
+			<string>\b(if|for|for each|while|in)\b</string>
 			<key>name</key>
 			<string>keyword.control.rust</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(use|import|export)\b</string>
+			<key>name</key>
+			<string>keyword.other.module.rust</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b(mod|fn|pred|iter|obj|type|tag)\b</string>
 			<key>name</key>
 			<string>keyword.other.item.rust</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\/\/.*$</string>
+			<key>name</key>
+			<string>comment.line.double-slash.rust</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>/\*</string>
+			<key>end</key>
+			<string>\*/</string>
+			<key>name</key>
+			<string>comment.block.rust</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>1</string>
+			<key>name</key>
+			<string>constant.numeric.rust</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.quoted.double</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
