@@ -47,20 +47,42 @@
 			<string>comment.block.rust</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>1</string>
-			<key>name</key>
-			<string>constant.numeric.rust</string>
-		</dict>
-		<dict>
 			<key>begin</key>
 			<string>"</string>
 			<key>end</key>
 			<string>"</string>
 			<key>name</key>
 			<string>string.quoted.double</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_placeholder</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>string_placeholder</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>%[a-zA-Z]</string>
+					<key>name</key>
+					<string>constant.other.placeholder.rust</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>%</string>
+					<key>name</key>
+					<string>invalid.illegal.placeholder.c</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.rust</string>
 	<key>uuid</key>
