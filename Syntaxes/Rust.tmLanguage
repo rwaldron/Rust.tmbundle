@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>rs</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>{</string>
+	<key>foldingStopMarker</key>
+	<string>}</string>
+	<key>name</key>
+	<string>Rust</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>match</key>
+			<string>\b(if|for|for each|while)\b</string>
+			<key>name</key>
+			<string>keyword.control.rust</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(mod|fn|pred|iter|obj|type|tag)\b</string>
+			<key>name</key>
+			<string>keyword.other.item.rust</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.rust</string>
+	<key>uuid</key>
+	<string>4AB0D892-0D1C-4110-B689-0B47BD14BF45</string>
+</dict>
+</plist>
