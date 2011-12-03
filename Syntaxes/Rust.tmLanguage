@@ -7,37 +7,73 @@
 		<string>rs</string>
 	</array>
 	<key>foldingStartMarker</key>
-	<string>{</string>
+	<string>\{</string>
 	<key>foldingStopMarker</key>
-	<string>}</string>
+	<string>\}</string>
 	<key>name</key>
 	<string>Rust</string>
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>\b(if|for|for each|while|in)\b</string>
+			<key>begin</key>
+			<string>(fn)\s+(\w+)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.toplevel.rust</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.rust</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\}</string>
 			<key>name</key>
-			<string>keyword.control.rust</string>
+			<string>meta.function.rust</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#function_contents</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(use|import|export)\b</string>
+			<string>\b(mod|pred|iter|obj|type|tag|use|import|export)\b</string>
 			<key>name</key>
-			<string>keyword.other.module.rust</string>
+			<string>keyword.other.toplevel.rust</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>\b(mod|fn|pred|iter|obj|type|tag)\b</string>
-			<key>name</key>
-			<string>keyword.other.item.rust</string>
+			<key>include</key>
+			<string>#comment_line</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>\/\/.*$</string>
-			<key>name</key>
-			<string>comment.line.double-slash.rust</string>
+			<key>include</key>
+			<string>#comment_block</string>
 		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>block</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<key>comment_block</key>
 		<dict>
 			<key>begin</key>
 			<string>/\*</string>
@@ -46,31 +82,69 @@
 			<key>name</key>
 			<string>comment.block.rust</string>
 		</dict>
+		<key>comment_line</key>
 		<dict>
-			<key>begin</key>
-			<string>"</string>
-			<key>end</key>
-			<string>"</string>
+			<key>match</key>
+			<string>\/\/.*$</string>
 			<key>name</key>
-			<string>string.quoted.double</string>
+			<string>comment.line.double-slash.rust</string>
+		</dict>
+		<key>function_contents</key>
+		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>#string_placeholder</string>
+					<key>match</key>
+					<string>\b(if|for|for each|while|in|let|ret)\b</string>
+					<key>name</key>
+					<string>keyword.control.rust</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>"</string>
+					<key>end</key>
+					<string>"</string>
+					<key>name</key>
+					<string>string.quoted.double.rust</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_placeholder</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#string_escape</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
-	</array>
-	<key>repository</key>
-	<dict>
+		<key>string_escape</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\n</string>
+					<key>name</key>
+					<string>constant.other.escape.rust</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\.</string>
+					<key>name</key>
+					<string>invalid.illegal.escape.rust</string>
+				</dict>
+			</array>
+		</dict>
 		<key>string_placeholder</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>%[a-zA-Z]</string>
+					<string>%[a-zA-Z%]</string>
 					<key>name</key>
 					<string>constant.other.placeholder.rust</string>
 				</dict>
@@ -78,9 +152,27 @@
 					<key>match</key>
 					<string>%</string>
 					<key>name</key>
-					<string>invalid.illegal.placeholder.c</string>
+					<string>invalid.illegal.placeholder.rust</string>
 				</dict>
 			</array>
+		</dict>
+		<key>type_signature</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.rust</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.rust</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?&lt;=:)\s*(\w+)</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
